@@ -7,7 +7,6 @@ public interface UserDAO {
 
   void insert(User user);
 
-  // do not return null, use Optional
   Optional<User> get(int userId);
 
   Set<User> getAll();

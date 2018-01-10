@@ -4,11 +4,7 @@ import java.util.Objects;
 
 public class User {
 
-  private Integer id;  // problem: id is null for new user and not null for existing user
-                       // seems that NewUser and PersistedUser are distinct classes
-                       // or you can generate id outside database, in order not to rely on database sequence,
-                       // which is good for distributed systems
-
+  private Integer id;
   private String firstName;
   private String lastName;
 
