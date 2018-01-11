@@ -17,13 +17,13 @@ public class UserSpringJDBCDAO implements UserDAO {
 
   private final JdbcTemplate jdbcTemplate;
   private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-  private final SimpleJdbcInsert simpleJdbcInsert;
+  private final SimpleJdbcInsert userJdbcInsert;
 
   public UserSpringJDBCDAO(DataSource dataSource) {
 
     jdbcTemplate = new JdbcTemplate(dataSource);
     namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-    simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
+    userJdbcInsert = new SimpleJdbcInsert(jdbcTemplate)
             .withTableName("users")
             .usingGeneratedKeyColumns("user_id");
   }
@@ -39,7 +39,7 @@ public class UserSpringJDBCDAO implements UserDAO {
     params.put("first_name", user.getFirstName());
     params.put("last_name", user.getLastName());
 
-    int userId = simpleJdbcInsert.executeAndReturnKey(params).intValue();
+    int userId = userJdbcInsert.executeAndReturnKey(params).intValue();
 
     user.setId(userId);
   }
